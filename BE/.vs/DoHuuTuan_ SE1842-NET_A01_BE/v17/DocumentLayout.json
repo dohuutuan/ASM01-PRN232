@@ -1,0 +1,217 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\be\\_be\\controllers\\relatedcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|solutionrelative:_be\\controllers\\relatedcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\be\\_be\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|solutionrelative:_be\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\be\\_be\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|solutionrelative:_be\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\be\\_be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|solutionrelative:_be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\be\\_be\\service\\impl\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|solutionrelative:_be\\service\\impl\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\be\\_be\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|solutionrelative:_be\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\be\\_be\\controllers\\newsauditcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|solutionrelative:_be\\controllers\\newsauditcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\be\\_be\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|solutionrelative:_be\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\be\\_be\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|solutionrelative:_be\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\be\\_be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|solutionrelative:_be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\be\\_be\\service\\impl\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC9EAF8A-BB29-463B-8E81-179E4AD0EE17}|_BE\\BE.csproj|solutionrelative:_be\\service\\impl\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AccountService.cs",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Service\\Impl\\AccountService.cs",
+              "RelativeDocumentMoniker": "_BE\\Service\\Impl\\AccountService.cs",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Service\\Impl\\AccountService.cs",
+              "RelativeToolTip": "_BE\\Service\\Impl\\AccountService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAmwBQAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T14:33:01.365Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "_BE\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "_BE\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAcwB8AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T09:30:13.081Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\appsettings.json",
+              "RelativeDocumentMoniker": "_BE\\appsettings.json",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\appsettings.json",
+              "RelativeToolTip": "_BE\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-16T09:27:55.813Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "_BE\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "_BE\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAwBwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T09:28:17.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RelatedController.cs",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\RelatedController.cs",
+              "RelativeDocumentMoniker": "_BE\\Controllers\\RelatedController.cs",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\RelatedController.cs",
+              "RelativeToolTip": "_BE\\Controllers\\RelatedController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T09:42:07.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "NewsController.cs",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\NewsController.cs",
+              "RelativeDocumentMoniker": "_BE\\Controllers\\NewsController.cs",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\NewsController.cs",
+              "RelativeToolTip": "_BE\\Controllers\\NewsController.cs",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAuwFUAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T09:36:24.373Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "NewsAuditController.cs",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\NewsAuditController.cs",
+              "RelativeDocumentMoniker": "_BE\\Controllers\\NewsAuditController.cs",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\NewsAuditController.cs",
+              "RelativeToolTip": "_BE\\Controllers\\NewsAuditController.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwBQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T09:34:28.162Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "_BE\\Controllers\\CategoryController.cs",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "_BE\\Controllers\\CategoryController.cs",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T09:40:01.258Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ReportsController.cs",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\ReportsController.cs",
+              "RelativeDocumentMoniker": "_BE\\Controllers\\ReportsController.cs",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Controllers\\ReportsController.cs",
+              "RelativeToolTip": "_BE\\Controllers\\ReportsController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAiwAkAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T09:33:11.608Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Program.cs",
+              "RelativeDocumentMoniker": "_BE\\Program.cs",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Program.cs",
+              "RelativeToolTip": "_BE\\Program.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T09:39:46.347Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Service\\Impl\\AuthService.cs",
+              "RelativeDocumentMoniker": "_BE\\Service\\Impl\\AuthService.cs",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\BE\\_BE\\Service\\Impl\\AuthService.cs",
+              "RelativeToolTip": "_BE\\Service\\Impl\\AuthService.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAwCkAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T09:28:26.664Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

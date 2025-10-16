@@ -1,0 +1,346 @@
+﻿@page
+@model _FE.Pages.Categories.IndexModel
+@{
+    ViewData["Title"] = "Category Management";
+}
+
+<style>
+    /* ---- Layout ---- */
+    body {
+        background-color: #f6f7fb;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .category-container {
+        width: 1150px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        padding: 30px 40px;
+    }
+
+    h2 {
+        font-size: 26px;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 25px;
+        border-left: 6px solid #007bff;
+        padding-left: 10px;
+    }
+
+    /* ---- Toolbar ---- */
+    .toolbar {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+        .toolbar input {
+            width: 220px;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .toolbar button {
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+    .btn-primary {
+        background: #007bff;
+        color: white;
+    }
+
+    .btn-success {
+        background: #28a745;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: #0056b3;
+    }
+
+    .btn-success:hover {
+        background: #218838;
+    }
+
+    /* ---- Table ---- */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 15px;
+    }
+
+    thead {
+        background-color: #007bff;
+        color: white;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 12px 10px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+        background-color: #eef4ff;
+        transition: background 0.2s ease;
+    }
+
+    /* ---- Action Buttons ---- */
+    .action-btn {
+        border: none;
+        background: none;
+        cursor: pointer;
+        padding: 5px 8px;
+        border-radius: 6px;
+        transition: 0.2s ease;
+    }
+
+        .action-btn i {
+            font-size: 16px;
+        }
+
+    .btn-edit {
+        color: #ffc107;
+    }
+
+    .btn-delete {
+        color: #dc3545;
+    }
+
+    .btn-toggle {
+        color: #007bff;
+    }
+
+    .btn-edit:hover {
+        background: #fff3cd;
+    }
+
+    .btn-delete:hover {
+        background: #f8d7da;
+    }
+
+    .btn-toggle:hover {
+        background: #e7f1ff;
+    }
+
+    /* ---- Modal ---- */
+    .modal-content {
+        border-radius: 10px;
+    }
+
+    .modal-header {
+        background: #007bff;
+        color: white;
+    }
+
+    .modal-footer .btn-primary {
+        background: #007bff;
+        border: none;
+    }
+
+    .modal-footer .btn-secondary {
+        background: #6c757d;
+        border: none;
+    }
+</style>
+
+<div class="category-container">
+    <h2>📂 Category Management</h2>
+
+    <div class="toolbar">
+        <input type="text" id="searchName" placeholder="Search Name">
+        <input type="text" id="searchDesc" placeholder="Search Description">
+        <button class="btn-primary" onclick="loadCategories()"><i class="bi bi-search"></i> Search</button>
+        <button class="btn-success" onclick="openModal()"><i class="bi bi-plus-circle"></i> Add Category</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Parent</th>
+                <th>Active</th>
+                <th>Article Count</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="categoryTableBody"></tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="categoryModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="categoryForm">
+                <div class="modal-header">
+                    <h5 class="modal-title">Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="categoryId">
+                    <input type="text" id="categoryName" placeholder="Category Name" class="form-control mb-2" required>
+                    <textarea id="categoryDescription" placeholder="Description" class="form-control mb-2" required></textarea>
+                    <select id="parentCategory" class="form-select mb-2"></select>
+                    <div class="form-check mb-2">
+                        <input type="checkbox" class="form-check-input" id="isActive">
+                        <label class="form-check-label" for="isActive">Active</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<script>
+    const token = localStorage.getItem('jwt_token');
+    let categoryList = [];
+
+    function loadCategories() {
+        const name = $('#searchName').val();
+        const desc = $('#searchDesc').val();
+
+        $.ajax({
+            url: 'http://localhost:5053/api/Category',
+            type: 'GET',
+            headers: { 'Authorization': 'Bearer ' + token },
+            data: { name, description: desc },
+            success: function(res) {
+                categoryList = res.data.map(cat => {
+                    const parent = res.data.find(p => p.categoryId === cat.parentCategoryId);
+                    return {
+                        ...cat,
+                        parentName: parent ? parent.categoryName : 'None',
+                        categoryDescription: cat.categoryDesciption,
+                        articleCount: cat.articleCount || 0
+                    };
+                });
+
+                renderTable();
+                populateParentDropdown();
+            },
+            error: function(err) { console.error(err); alert('Cannot load categories'); }
+        });
+    }
+
+    function renderTable() {
+        const tbody = $('#categoryTableBody');
+        tbody.empty();
+        categoryList.forEach(cat => {
+            tbody.append(`
+                <tr>
+                    <td>${cat.categoryName}</td>
+                    <td>${cat.categoryDescription}</td>
+                    <td>${cat.parentName}</td>
+                    <td>${cat.isActive ? 'Yes' : 'No'}</td>
+                    <td>${cat.articleCount}</td>
+                    <td>
+                        <button class="action-btn btn-edit" onclick="editCategory(${cat.categoryId})"><i class="bi bi-pencil-square"></i></button>
+                        <button class="action-btn btn-delete" onclick="deleteCategory(${cat.categoryId})"><i class="bi bi-trash"></i></button>
+                        <button class="action-btn btn-toggle" onclick="toggleActive(${cat.categoryId}, ${!cat.isActive})">
+                            <i class="bi ${cat.isActive ? 'bi-eye-slash' : 'bi-eye'}"></i>
+                        </button>
+                    </td>
+                </tr>
+            `);
+        });
+    }
+
+    function populateParentDropdown() {
+        const dropdown = $('#parentCategory');
+        dropdown.empty();
+        dropdown.append('<option value="">None</option>');
+        categoryList.forEach(cat => {
+            dropdown.append(`<option value="${cat.categoryId}">${cat.categoryName}</option>`);
+        });
+    }
+
+    function openModal() {
+        $('#categoryId').val('');
+        $('#categoryForm')[0].reset();
+        $('#categoryModal').modal('show');
+    }
+
+    function editCategory(id) {
+        const cat = categoryList.find(c => c.categoryId === id);
+        if(!cat) return;
+
+        $('#categoryId').val(cat.categoryId);
+        $('#categoryName').val(cat.categoryName);
+        $('#categoryDescription').val(cat.categoryDescription);
+        $('#parentCategory').val(cat.parentCategoryId);
+        $('#isActive').prop('checked', cat.isActive);
+        $('#categoryModal').modal('show');
+    }
+
+    $('#categoryForm').submit(function(e) {
+        e.preventDefault();
+        const id = $('#categoryId').val();
+        const data = {
+            categoryName: $('#categoryName').val(),
+            categoryDesciption: $('#categoryDescription').val(),
+            parentCategoryId: $('#parentCategory').val() || null,
+            isActive: $('#isActive').is(':checked')
+        };
+
+        const ajaxOpt = {
+            headers: { 'Authorization': 'Bearer ' + token },
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: () => { $('#categoryModal').modal('hide'); loadCategories(); },
+            error: err => { console.error(err); alert(err.responseJSON?.message || 'Operation failed'); }
+        };
+
+        if(id)
+            $.ajax({ ...ajaxOpt, url: `http://localhost:5053/api/Category/${id}`, type: 'PUT' });
+        else
+            $.ajax({ ...ajaxOpt, url: `http://localhost:5053/api/Category`, type: 'POST' });
+    });
+
+    function deleteCategory(id) {
+        if(confirm('Are you sure to delete this category?')) {
+            $.ajax({
+                url: `http://localhost:5053/api/Category/${id}`,
+                type: 'DELETE',
+                headers: { 'Authorization': 'Bearer ' + token },
+                success: () => loadCategories(),
+                error: err => { console.error(err); alert('Delete failed'); }
+            });
+        }
+    }
+
+    function toggleActive(id, isActive) {
+        $.ajax({
+            url: `http://localhost:5053/api/Category/${id}/toggle?isActive=${isActive}`,
+            type: 'PATCH',
+            headers: { 'Authorization': 'Bearer ' + token },
+            success: () => loadCategories(),
+            error: err => { console.error(err); alert('Toggle failed'); }
+        });
+    }
+
+    $(document).ready(function() { loadCategories(); });
+</script>

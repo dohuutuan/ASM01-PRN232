@@ -1,0 +1,154 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\fe\\_fe\\pages\\report.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|solutionrelative:_fe\\pages\\report.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\fe\\_fe\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|solutionrelative:_fe\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\fe\\_fe\\pages\\news\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|solutionrelative:_fe\\pages\\news\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\fe\\_fe\\pages\\news\\newsdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|solutionrelative:_fe\\pages\\news\\newsdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\fe\\_fe\\pages\\newspublic.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|solutionrelative:_fe\\pages\\newspublic.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\fe\\_fe\\pages\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|solutionrelative:_fe\\pages\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\fe\\_fe\\pages\\newsaudit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|solutionrelative:_fe\\pages\\newsaudit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Report.cshtml",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\Report.cshtml",
+              "RelativeDocumentMoniker": "_FE\\Pages\\Report.cshtml",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\Report.cshtml",
+              "RelativeToolTip": "_FE\\Pages\\Report.cshtml",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAiwEUAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-16T15:04:38.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NewsDetail.cshtml",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\News\\NewsDetail.cshtml",
+              "RelativeDocumentMoniker": "_FE\\Pages\\News\\NewsDetail.cshtml",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\News\\NewsDetail.cshtml",
+              "RelativeToolTip": "_FE\\Pages\\News\\NewsDetail.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-16T14:49:35.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NewsPublic.cshtml",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\NewsPublic.cshtml",
+              "RelativeDocumentMoniker": "_FE\\Pages\\NewsPublic.cshtml",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\NewsPublic.cshtml",
+              "RelativeToolTip": "_FE\\Pages\\NewsPublic.cshtml",
+              "ViewState": "AgIAALUAAAAAAAAAAAAiwNEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-16T14:48:08.006Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\Auth\\Login.cshtml",
+              "RelativeDocumentMoniker": "_FE\\Pages\\Auth\\Login.cshtml",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\Auth\\Login.cshtml",
+              "RelativeToolTip": "_FE\\Pages\\Auth\\Login.cshtml",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAiwEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-16T14:43:15.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\News\\Index.cshtml",
+              "RelativeDocumentMoniker": "_FE\\Pages\\News\\Index.cshtml",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\News\\Index.cshtml",
+              "RelativeToolTip": "_FE\\Pages\\News\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-16T09:45:51.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "NewsAudit.cshtml",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\NewsAudit.cshtml",
+              "RelativeDocumentMoniker": "_FE\\Pages\\NewsAudit.cshtml",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\NewsAudit.cshtml",
+              "RelativeToolTip": "_FE\\Pages\\NewsAudit.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAIBJwBoAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-16T09:44:49.07Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\appsettings.json",
+              "RelativeDocumentMoniker": "_FE\\appsettings.json",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\appsettings.json",
+              "RelativeToolTip": "_FE\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-16T09:27:48.967Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

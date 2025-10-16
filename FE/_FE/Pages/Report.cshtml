@@ -1,0 +1,234 @@
+﻿@page
+@model _FE.Pages.ReportModel
+@{
+    ViewData["Title"] = "Reports and Statistics";
+}
+
+<style>
+    body {
+        background-color: #f5f6fa;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .report-container {
+        width: 1200px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        padding: 30px 40px;
+    }
+
+    .page-title {
+        font-size: 26px;
+        font-weight: 700;
+        color: #1a1a1a;
+        border-left: 6px solid #007bff;
+        padding-left: 12px;
+        margin-bottom: 30px;
+    }
+
+    /* --- Toolbar --- */
+    .toolbar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px 20px;
+        margin-bottom: 25px;
+    }
+
+        .toolbar label {
+            font-weight: 500;
+            margin-right: 6px;
+        }
+
+        .toolbar input[type="date"] {
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+    .btn-generate {
+        background: linear-gradient(135deg, #007bff, #0056d2);
+        color: #fff;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 18px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+        .btn-generate:hover {
+            background: linear-gradient(135deg, #0056d2, #003c9e);
+            transform: translateY(-1px);
+        }
+
+    /* --- Summary --- */
+    .summary-card {
+        background: #eef3ff;
+        border-left: 5px solid #007bff;
+        border-radius: 8px;
+        padding: 15px 20px;
+        margin-bottom: 30px;
+        font-size: 18px;
+        color: #333;
+        font-weight: 600;
+    }
+
+        .summary-card span {
+            font-size: 20px;
+            font-weight: 700;
+            color: #007bff;
+        }
+
+    /* --- Tables layout --- */
+    .report-grid {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .report-card {
+        flex: 1;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        overflow: hidden;
+    }
+
+        .report-card h5 {
+            background: #007bff;
+            color: white;
+            font-weight: 600;
+            font-size: 17px;
+            margin: 0;
+            padding: 12px 16px;
+        }
+
+        .report-card:nth-child(2) h5 {
+            background: #28a745;
+        }
+
+        .report-card:nth-child(3) h5 {
+            background: #17a2b8;
+        }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 15px;
+    }
+
+    thead {
+        background: #f4f6f8;
+        color: #333;
+    }
+
+    th, td {
+        padding: 10px 12px;
+        text-align: center;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    tbody tr:hover {
+        background-color: #f2f6ff;
+    }
+</style>
+
+<div class="report-container">
+    <h2 class="page-title">📊 Reports and Statistics</h2>
+
+    <div class="toolbar">
+        <label for="startDate">From:</label>
+        <input type="date" id="startDate">
+        <label for="endDate">To:</label>
+        <input type="date" id="endDate">
+        <button class="btn-generate" onclick="loadReport()">
+            <i class="bi bi-bar-chart-fill"></i> Generate Report
+        </button>
+    </div>
+
+    <div class="summary-card">
+        Total Articles: <span id="totalArticles">0</span>
+    </div>
+
+    <div class="report-grid">
+        <div class="report-card">
+            <h5>Articles by Category</h5>
+            <table>
+                <thead>
+                    <tr><th>Category</th><th>Count</th></tr>
+                </thead>
+                <tbody id="categoryTable"></tbody>
+            </table>
+        </div>
+
+        <div class="report-card">
+            <h5>Articles by Author</h5>
+            <table>
+                <thead>
+                    <tr><th>Author</th><th>Count</th></tr>
+                </thead>
+                <tbody id="authorTable"></tbody>
+            </table>
+        </div>
+
+        <div class="report-card">
+            <h5>Articles by Status</h5>
+            <table>
+                <thead>
+                    <tr><th>Status</th><th>Count</th></tr>
+                </thead>
+                <tbody id="statusTable"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+    const token = localStorage.getItem('jwt_token');
+
+    function loadReport() {
+        const startDate = $('#startDate').val();
+        const endDate = $('#endDate').val();
+
+        $.ajax({
+            url: `http://localhost:5053/api/Reports?startDate=${startDate}&endDate=${endDate}`,
+            type: 'GET',
+            headers: { 'Authorization': 'Bearer ' + token },
+            success: function(res) {
+                const data = res.data;
+
+                $('#totalArticles').text(data.totalArticles);
+
+                const catTbody = $('#categoryTable').empty();
+                data.byCategory.forEach(c => {
+                    catTbody.append(`<tr><td>${c.categoryName}</td><td>${c.count}</td></tr>`);
+                });
+
+                const authTbody = $('#authorTable').empty();
+                data.byAuthor.forEach(a => {
+                    authTbody.append(`<tr><td>${a.createdByName}</td><td>${a.count}</td></tr>`);
+                });
+
+                const statusTbody = $('#statusTable').empty();
+                data.byStatus.forEach(s => {
+                    statusTbody.append(`<tr><td>${s.status}</td><td>${s.count}</td></tr>`);
+                });
+            },
+            error: function(err) {
+                console.error(err);
+                alert('Cannot load report');
+            }
+        });
+    }
+
+    $(document).ready(loadReport);
+</script>

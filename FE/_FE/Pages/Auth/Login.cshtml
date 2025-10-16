@@ -1,0 +1,95 @@
+﻿@page
+@model _FE.Pages.Auth.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="login-page d-flex align-items-center justify-content-center min-vh-100 bg-light">
+    <div class="card shadow-lg border-0 rounded-4 p-4" style="max-width: 420px; width: 100%;">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold text-primary">Welcome Back</h2>
+            <p class="text-muted">Sign in to continue to your account</p>
+        </div>
+
+        <form method="post" id="loginForm">
+            <div class="mb-3">
+                <label for="email" class="form-label fw-semibold">Email</label>
+                <input type="email" class="form-control form-control-lg rounded-3" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label fw-semibold">Password</label>
+                <input type="password" class="form-control form-control-lg rounded-3" id="password" name="password" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg w-100 rounded-3 shadow-sm mt-2">
+                <i class="bi bi-box-arrow-in-right me-2"></i> Login
+            </button>
+
+            <div id="loginError" class="text-danger mt-3 text-center fw-semibold"></div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.js"></script>
+    <script>
+        $('#loginForm').submit(function (e) {
+            e.preventDefault();
+            const email = $('#email').val();
+            const password = $('#password').val();
+
+            $.ajax({
+                url: 'http://localhost:5053/api/auth/login',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ email, password }),
+                success: function (res) {
+                    if (res.statusCode === 200 && res.data) {
+                        localStorage.setItem('jwt_token', res.data);
+                        window.location.href = '/News';
+                    } else {
+                        $('#loginError').text('Login failed. Please check your credentials.');
+                    }
+                },
+                error: function (err) {
+                    console.error(err);
+                    $('#loginError').text('Invalid email or password.');
+                }
+            });
+        });
+    </script>
+}
+
+<style>
+    .login-page {
+        background: linear-gradient(135deg, #007bff15, #6c63ff20);
+    }
+
+    .card {
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+    .btn-primary {
+        background: linear-gradient(90deg, #007bff, #6c63ff);
+        border: none;
+        transition: 0.3s;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #0056d2, #5440ff);
+            transform: translateY(-2px);
+        }
+
+    .form-control:focus {
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        border-color: #007bff;
+    }
+</style>

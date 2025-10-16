@@ -1,0 +1,321 @@
+﻿@page
+@model _FE.Pages.Tags.IndexModel
+@{
+    ViewData["Title"] = "Tag Management";
+}
+
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<h2 class="page-title">Tag Management</h2>
+
+<div class="action-bar">
+    <input type="text" id="searchTag" placeholder="🔍 Search tag..." class="search-input">
+    <button class="btn btn-primary btn-action" onclick="loadTags()">
+        <i class="bi bi-search me-1"></i> Search
+    </button>
+    <button class="btn btn-success btn-action" onclick="openModal()">
+        <i class="bi bi-plus-lg me-1"></i> Add Tag
+    </button>
+</div>
+
+<table class="table table-hover table-bordered align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>Tag Name</th>
+            <th>Note</th>
+            <th style="width: 180px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody id="tagTableBody"></tbody>
+</table>
+
+<!-- Modal CRUD -->
+<div class="modal fade" id="tagModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="tagForm">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tag Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="tagId">
+                    <div class="mb-3">
+                        <label class="form-label">Tag Name</label>
+                        <input type="text" id="tagName" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Note</label>
+                        <input type="text" id="tagNote" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-action">
+                        <i class="bi bi-save me-1"></i> Save
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-action" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg me-1"></i> Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Viewing Articles -->
+<div class="modal fade" id="articlesModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Articles for Tag: <span id="modalTagName" class="fw-semibold"></span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Author</th>
+                            <th>Created Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="articlesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- === CSS (đẹp, không responsive) === -->
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    .page-title {
+        margin-bottom: 18px;
+        font-weight: 700;
+        color: #222;
+    }
+
+    .action-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+
+    .search-input {
+        width: 260px;
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+
+        .search-input:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 4px rgba(13,110,253,0.15);
+            outline: none;
+        }
+
+    .btn-action {
+        padding: 8px 12px;
+        font-size: 0.95rem;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+        .btn-action i {
+            font-size: 1.05rem;
+        }
+
+    table {
+        background-color: #fff;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    thead.table-dark th {
+        background-color: #343a40;
+        color: #fff;
+        text-align: center;
+    }
+
+    td, th {
+        vertical-align: middle;
+        padding: 10px 12px;
+    }
+
+    .action-cell {
+        text-align: center;
+    }
+
+    .table-action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 38px;
+        border-radius: 8px;
+        margin: 0 4px;
+        font-size: 1rem;
+        color: #fff;
+        border: none;
+        transition: all 0.15s ease-in-out;
+    }
+
+        .table-action-btn.view {
+            background: #0dcaf0;
+        }
+
+        .table-action-btn.edit {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .table-action-btn.delete {
+            background: #dc3545;
+        }
+
+        .table-action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+
+    .modal-content {
+        border-radius: 10px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+</style>
+
+<!-- === Script === -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+    const token = localStorage.getItem('jwt_token');
+
+    function loadTags() {
+        const tagName = $('#searchTag').val();
+        $.ajax({
+            url: 'http://localhost:5053/api/Tag',
+            type: 'GET',
+            headers: { 'Authorization': 'Bearer ' + token },
+            data: { tagName },
+            success: function(res) {
+                const tbody = $('#tagTableBody');
+                tbody.empty();
+                (res.data || []).forEach(tag => {
+                    const safeName = (tag.tagName || '').replace(/'/g, "\\'");
+                    const tr = `<tr>
+                        <td>${tag.tagName || ''}</td>
+                        <td>${tag.note || ''}</td>
+                        <td class="action-cell">
+                            <button class="table-action-btn view" title="View Articles" onclick="viewArticles(${tag.tagId}, '${safeName}')">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                            <button class="table-action-btn edit" title="Edit" onclick="editTag(${tag.tagId})">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button class="table-action-btn delete" title="Delete" onclick="deleteTag(${tag.tagId})">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+                    tbody.append(tr);
+                });
+            },
+            error: function(err) {
+                console.error(err);
+                alert('Cannot load tags');
+            }
+        });
+    }
+
+    function openModal() {
+        $('#tagId').val('');
+        $('#tagForm')[0].reset();
+        $('#tagModal').modal('show');
+    }
+
+    function editTag(id) {
+        $.ajax({
+            url: `http://localhost:5053/api/Tag/${id}`,
+            type: 'GET',
+            headers: { 'Authorization': 'Bearer ' + token },
+            success: function(res) {
+                const tag = res.data;
+                $('#tagId').val(tag.tagId);
+                $('#tagName').val(tag.tagName);
+                $('#tagNote').val(tag.note);
+                $('#tagModal').modal('show');
+            },
+            error: function() { alert('Cannot load tag'); }
+        });
+    }
+
+    $('#tagForm').submit(function(e) {
+        e.preventDefault();
+        const id = $('#tagId').val();
+        const data = {
+            tagName: $('#tagName').val(),
+            note: $('#tagNote').val()
+        };
+        const ajaxOptions = {
+            url: id ? `http://localhost:5053/api/Tag/${id}` : `http://localhost:5053/api/Tag`,
+            type: id ? 'PUT' : 'POST',
+            headers: { 'Authorization': 'Bearer ' + token },
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: () => { $('#tagModal').modal('hide'); loadTags(); },
+            error: (err) => alert(err.responseJSON?.message || 'Action failed')
+        };
+        $.ajax(ajaxOptions);
+    });
+
+    function deleteTag(id) {
+        if (confirm('Are you sure to delete this tag?')) {
+            $.ajax({
+                url: `http://localhost:5053/api/Tag/${id}`,
+                type: 'DELETE',
+                headers: { 'Authorization': 'Bearer ' + token },
+                success: () => loadTags(),
+                error: (err) => alert(err.responseJSON?.message || 'Delete failed')
+            });
+        }
+    }
+
+    function viewArticles(tagId, tagName) {
+        $('#modalTagName').text(tagName);
+        $.ajax({
+            url: `http://localhost:5053/api/Tag/${tagId}/Articles`,
+            type: 'GET',
+            headers: { 'Authorization': 'Bearer ' + token },
+            success: function(res) {
+                const tbody = $('#articlesTableBody');
+                tbody.empty();
+                (res.data || []).forEach(a => {
+                    const tr = `<tr>
+                        <td>${a.newsTitle || ''}</td>
+                        <td>${a.categoryName || 'N/A'}</td>
+                        <td>${a.createdByName || 'Admin'}</td>
+                        <td>${a.createdDate ? new Date(a.createdDate).toLocaleDateString() : 'N/A'}</td>
+                        <td>${a.newsStatus ? 'Active' : 'Inactive'}</td>
+                    </tr>`;
+                    tbody.append(tr);
+                });
+                $('#articlesModal').modal('show');
+            },
+            error: function() { alert('Cannot load articles'); }
+        });
+    }
+
+    $(document).ready(() => loadTags());
+</script>

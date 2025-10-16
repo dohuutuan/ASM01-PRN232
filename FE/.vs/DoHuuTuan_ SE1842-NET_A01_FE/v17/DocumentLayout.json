@@ -1,0 +1,121 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\fe\\_fe\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|solutionrelative:_fe\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\fe\\_fe\\pages\\accounts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|solutionrelative:_fe\\pages\\accounts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\fe\\_fe\\pages\\tags\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|solutionrelative:_fe\\pages\\tags\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\fe\\_fe\\pages\\categories\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|solutionrelative:_fe\\pages\\categories\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|d:\\hoctap\\fa25\\prn232\\nms\\fe\\_fe\\pages\\newsaudit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D379D046-2F62-4CCD-B1CE-F8585570AA72}|_FE\\FE.csproj|solutionrelative:_fe\\pages\\newsaudit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "_FE\\Pages\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "_FE\\Pages\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-16T15:24:44.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\Accounts\\Index.cshtml",
+              "RelativeDocumentMoniker": "_FE\\Pages\\Accounts\\Index.cshtml",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\Accounts\\Index.cshtml",
+              "RelativeToolTip": "_FE\\Pages\\Accounts\\Index.cshtml",
+              "ViewState": "AgIAAGcBAAAAAAAAAAAiwIMBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-16T15:21:58.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\Tags\\Index.cshtml",
+              "RelativeDocumentMoniker": "_FE\\Pages\\Tags\\Index.cshtml",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\Tags\\Index.cshtml",
+              "RelativeToolTip": "_FE\\Pages\\Tags\\Index.cshtml",
+              "ViewState": "AgIAACUBAAAAAAAAAAAiwEEBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-16T15:15:09.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\Categories\\Index.cshtml",
+              "RelativeDocumentMoniker": "_FE\\Pages\\Categories\\Index.cshtml",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\Categories\\Index.cshtml",
+              "RelativeToolTip": "_FE\\Pages\\Categories\\Index.cshtml",
+              "ViewState": "AgIAAD4BAAAAAAAAAAAiwFoBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-16T15:11:45.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NewsAudit.cshtml",
+              "DocumentMoniker": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\NewsAudit.cshtml",
+              "RelativeDocumentMoniker": "_FE\\Pages\\NewsAudit.cshtml",
+              "ToolTip": "D:\\HOCTAP\\FA25\\PRN232\\NMS\\FE\\_FE\\Pages\\NewsAudit.cshtml",
+              "RelativeToolTip": "_FE\\Pages\\NewsAudit.cshtml",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAiwKMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-16T09:44:49.07Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

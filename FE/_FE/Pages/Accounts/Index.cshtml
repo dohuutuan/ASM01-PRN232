@@ -1,0 +1,387 @@
+﻿@page
+@model _FE.Pages.Accounts.IndexModel
+@{
+    ViewData["Title"] = "Account Management";
+}
+
+<h2>Account Management</h2>
+
+<div class="mb-2">
+    <input type="text" id="searchName" placeholder="Search Name" class="form-control d-inline-block w-auto me-2">
+    <input type="text" id="searchEmail" placeholder="Search Email" class="form-control d-inline-block w-auto me-2">
+    <select id="filterRole" class="form-select d-inline-block w-auto me-2">
+        <option value="">All Roles</option>
+        <option value="1">Staff</option>
+        <option value="2">Lecturer</option>
+    </select>
+    <button class="btn btn-primary" onclick="loadAccounts(1)">Search</button>
+    <button class="btn btn-success" onclick="openModal()">Add Account</button>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="accountTableBody"></tbody>
+</table>
+
+<nav>
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#" id="prevPage">Prev</a></li>
+        <li class="page-item"><span class="page-link" id="pageInfo">1</span></li>
+        <li class="page-item"><a class="page-link" href="#" id="nextPage">Next</a></li>
+    </ul>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="accountModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="accountForm">
+                <div class="modal-header">
+                    <h5 class="modal-title">Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="accountId">
+                    <input type="text" id="accountName" placeholder="Name" class="form-control mb-2" required>
+                    <input type="email" id="accountEmail" placeholder="Email" class="form-control mb-2" required>
+                    <select id="accountRole" class="form-select mb-2" required>
+                        <option value="1">Staff</option>
+                        <option value="2">Lecturer</option>
+                    </select>
+                    <input type="password" id="accountPassword" placeholder="Password" class="form-control mb-2">
+                    <input type="password" id="currentPassword" placeholder="Current Password (for update)" class="form-control mb-2">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        const token = localStorage.getItem('jwt_token'); // JWT from login
+        const pageSize = 5;
+        let currentPage = 1;
+        let totalCount = 0;
+        let totalPages = 1;
+        const roleMap = { 1: 'Staff', 2: 'Lecturer' };
+
+        function buildODataQuery(pageNumber) {
+            const name = $('#searchName').val();
+            const email = $('#searchEmail').val();
+            const role = $('#filterRole').val();
+
+            let filters = [];
+            if(name) filters.push(`contains(AccountName,'${name}')`);
+            if(email) filters.push(`contains(AccountEmail,'${email}')`);
+            if(role) filters.push(`AccountRole eq ${role}`);
+
+            const filterStr = filters.length > 0 ? `$filter=${filters.join(' and ')}` : '';
+            const skip = (pageNumber - 1) * pageSize;
+            const query = `?$top=${pageSize}&$skip=${skip}&$count=true` + (filterStr ? `&${filterStr}` : '') + `&$orderby=accountName`;
+            return query;
+        }
+
+        function loadAccounts(pageNumber) {
+            currentPage = pageNumber;
+            const query = buildODataQuery(pageNumber);
+            $.ajax({
+                url: 'http://localhost:5053/api/Account' + query,
+                type: 'GET',
+                headers: { 'Authorization': 'Bearer ' + token },
+                success: function(res) {
+                    const list = res || [];
+                    renderTable(list);
+                    updatePagination();
+                },
+                error: function(err) { console.error(err); alert('Cannot load accounts'); }
+            });
+        }
+
+        function renderTable(list) {
+            const tbody = $('#accountTableBody');
+            tbody.empty();
+            if(list.length === 0) {
+                tbody.append('<tr><td colspan="4" class="text-center">No accounts found</td></tr>');
+                return;
+            }
+            list.forEach(acc => {
+                const tr = `<tr>
+                    <td>${acc.accountName}</td>
+                    <td>${acc.accountEmail}</td>
+                    <td>${roleMap[acc.accountRole] || acc.accountRole}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning me-1" onclick="editAccount(${acc.accountId})">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteAccount(${acc.accountId})">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.append(tr);
+            });
+        }
+
+      function updatePagination() {
+            $('#pageInfo').text(`${currentPage} / ${totalPages}`);
+            $('#prevPage').parent().toggleClass('enable', currentPage <= 1);
+            $('#nextPage').parent().toggleClass('enable', currentPage >= totalPages);
+        }
+
+                // Pagination events
+        $(document).on('click', '#prevPage', function(e) {
+            e.preventDefault();
+            loadAccounts(currentPage - 1); // vẫn cho click âm số trang → bảng sẽ show "No news found"
+        });
+
+        $(document).on('click', '#nextPage', function(e) {
+            e.preventDefault();
+            loadAccounts(currentPage + 1);
+        });
+        function openModal() {
+            $('#accountId').val('');
+            $('#accountForm')[0].reset();
+            $('#accountModal').modal('show');
+        }
+
+        function editAccount(id) {
+            $.ajax({
+                url: `http://localhost:5053/api/Account/${id}`,
+                type: 'GET',
+                headers: { 'Authorization': 'Bearer ' + token },
+                success: function(acc) {
+                    $('#accountId').val(acc.accountId);
+                    $('#accountName').val(acc.accountName);
+                    $('#accountEmail').val(acc.accountEmail);
+                    $('#accountRole').val(acc.accountRole);
+                    $('#accountPassword').val('');
+                    $('#currentPassword').val('');
+                    $('#accountModal').modal('show');
+                }
+            });
+        }
+
+        $('#accountForm').submit(function(e) {
+            e.preventDefault();
+            const id = $('#accountId').val();
+            const name = $('#accountName').val().trim();
+            const email = $('#accountEmail').val().trim();
+            const role = parseInt($('#accountRole').val());
+            const password = $('#accountPassword').val();
+            const currentPassword = $('#currentPassword').val();
+
+            if(!name || !email || !role) { alert('Please fill in all required fields'); return; }
+            if(id && password && !currentPassword) { alert('Current password is required when updating password'); return; }
+
+            const data = { accountName: name, accountEmail: email, accountRole: role };
+            if(password) data.accountPassword = password;
+
+            if(id) {
+                $.ajax({
+                    url: `http://localhost:5053/api/Account/${id}?currentPassword=${currentPassword}`,
+                    type: 'PUT',
+                    headers: { 'Authorization': 'Bearer ' + token },
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: () => { $('#accountModal').modal('hide'); loadAccounts(currentPage); },
+                    error: (err) => { console.error(err); alert(err.responseJSON?.message || 'Update failed'); }
+                });
+            } else {
+                if(!password) { alert('Password is required for new account'); return; }
+                data.accountPassword = password;
+                $.ajax({
+                    url: `http://localhost:5053/api/Account`,
+                    type: 'POST',
+                    headers: { 'Authorization': 'Bearer ' + token },
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: () => { $('#accountModal').modal('hide'); loadAccounts(currentPage); },
+                    error: (err) => { console.error(err); alert(err.responseJSON?.message || 'Create failed'); }
+                });
+            }
+        });
+
+        function deleteAccount(id) {
+            if(confirm('Are you sure to delete this account?')) {
+                $.ajax({
+                    url: `http://localhost:5053/api/Account/${id}`,
+                    type: 'DELETE',
+                    headers: { 'Authorization': 'Bearer ' + token },
+                    success: () => loadAccounts(currentPage),
+                    error: (err) => { console.error(err); alert(err.responseJSON?.message || 'Delete failed'); }
+                });
+            }
+        }
+
+        $(document).ready(function() { loadAccounts(1); });
+    </script>
+}
+<style>
+    body {
+        background-color: #f5f6fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        font-weight: 600;
+        color: #2f3640;
+    }
+
+    .mb-2 {
+        margin-bottom: 1rem !important;
+    }
+
+    .form-control,
+    .form-select {
+        display: inline-block;
+        width: 200px;
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        transition: border-color 0.2s;
+        vertical-align: middle;
+    }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+    .btn {
+        border-radius: 6px;
+        padding: 6px 12px;
+        font-size: 14px;
+        transition: 0.2s;
+        vertical-align: middle;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: #fff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+        }
+
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+        color: #fff;
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border: none;
+        color: #212529;
+    }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+            color: #fff;
+        }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        color: #fff;
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+    table {
+        background-color: #fff;
+        border-collapse: collapse;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    th {
+        background-color: #e9ecef;
+        color: #212529;
+        text-align: left;
+        padding: 10px;
+        font-weight: 600;
+    }
+
+    td {
+        padding: 10px;
+        border-top: 1px solid #ddd;
+        vertical-align: middle;
+    }
+
+    tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .pagination {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+
+        .pagination .page-item {
+            margin: 0 5px;
+        }
+
+        .pagination .page-link {
+            color: #007bff;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 5px 12px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+            .pagination .page-link:hover {
+                background-color: #007bff;
+                color: #fff;
+            }
+
+    .modal-content {
+        border-radius: 10px;
+        border: none;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+        background-color: #007bff;
+        color: white;
+        border-bottom: none;
+    }
+
+    .modal-footer {
+        border-top: none;
+    }
+
+    /* Table action buttons */
+    td button {
+        min-width: 70px;
+    }
+
+    /* Search spacing */
+    #searchName, #searchEmail, #filterRole {
+        margin-bottom: 10px;
+    }
+</style>

@@ -1,0 +1,217 @@
+﻿@page "{id}"
+@model _FE.Pages.News.NewsDetailModel
+@{
+    ViewData["Title"] = "News Detail";
+}
+
+<div class="news-container">
+    <div class="news-main">
+        <h2 id="newsTitle"></h2>
+        <p>
+            <strong>Category:</strong> <span id="newsCategory"></span> |
+            <strong>Author:</strong> <span id="newsAuthor"></span> |
+            <strong>Date:</strong> <span id="newsDate"></span>
+        </p>
+        <hr>
+        <div id="newsContent"></div>
+    </div>
+
+    <div class="news-side">
+        <h4>Related Articles</h4>
+        <ul id="relatedArticles" class="list-group"></ul>
+    </div>
+</div>
+
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        /* --- CONTAINER CHÍNH (2 CỘT) --- */
+        .news-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+            padding: 2rem 4rem;
+            margin-top: 2rem; /* tránh đè header */
+        }
+
+        /* --- CỘT TRÁI: NỘI DUNG CHÍNH --- */
+        .news-main {
+            flex: 3;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+            min-height: 70vh;
+        }
+
+        /* --- CỘT PHẢI: RELATED --- */
+        .news-side {
+            flex: 1.2;
+            background-color: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1.2rem;
+            height: fit-content;
+            align-self: flex-start;
+        }
+
+        /* --- TIÊU ĐỀ, THÔNG TIN --- */
+        h2#newsTitle {
+            color: #0d6efd;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1.9rem;
+        }
+
+        p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+
+        strong {
+            color: #222;
+        }
+
+        hr {
+            margin: 1.5rem 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #ddd, #bbb, #ddd);
+        }
+
+        /* --- NỘI DUNG BÀI VIẾT --- */
+        #newsContent p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            font-size: 1.05rem;
+        }
+
+        #newsContent h3, #newsContent h4 {
+            color: #0d6efd;
+            font-weight: 600;
+            margin-top: 1.2rem;
+        }
+
+        #newsContent img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        /* --- RELATED ARTICLES --- */
+        h4 {
+            margin-bottom: 1rem;
+            color: #0d6efd;
+            font-weight: 600;
+            border-bottom: 2px solid #0d6efd30;
+            padding-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        #relatedArticles .list-group-item {
+            border: none;
+            border-radius: 0.5rem;
+            margin-bottom: 0.6rem;
+            background-color: #f8faff;
+            transition: all 0.2s ease;
+            padding: 0.8rem 1rem;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        }
+
+            #relatedArticles .list-group-item:hover {
+                background-color: #eef4ff;
+                transform: translateX(3px);
+            }
+
+        #relatedArticles a {
+            color: #0d6efd;
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+        }
+
+            #relatedArticles a:hover {
+                text-decoration: underline;
+            }
+
+    </style>
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        const token = localStorage.getItem('jwt_token');
+        const newsId = '@Model.NewsId';
+
+        function loadNewsDetail() {
+            $.ajax({
+                url: `http://localhost:5053/api/News/${newsId}`,
+                type: 'GET',
+                headers: { 'Authorization': 'Bearer ' + token },
+                success: function (res) {
+                    if (res.statusCode !== 200 || !res.data) {
+                        alert('Cannot load news detail');
+                        return;
+                    }
+
+                    const data = res.data;
+                    $('#newsTitle').text(data.newsTitle);
+                    $('#newsCategory').text(data.categoryName);
+                    $('#newsAuthor').text(data.createdByName);
+                    $('#newsDate').text(new Date(data.createdDate).toLocaleDateString());
+                    $('#newsContent').html(data.newsContent);
+                },
+                error: function (err) {
+                    console.error(err);
+                    alert('Cannot load news detail');
+                }
+            });
+        }
+
+        function loadRelatedNews() {
+            $.ajax({
+                url: `http://localhost:5053/api/Related/${newsId}`,
+                type: 'GET',
+                headers: { 'Authorization': 'Bearer ' + token },
+                success: function (res) {
+                    if (res.statusCode !== 200 || !res.data) {
+                        $('#relatedArticles').html('<li class="list-group-item">No related articles</li>');
+                        return;
+                    }
+
+                    const ul = $('#relatedArticles');
+                    ul.empty();
+                    const relatedList = res.data;
+                    if (relatedList.length === 0) {
+                        ul.append('<li class="list-group-item">No related articles</li>');
+                        return;
+                    }
+                    relatedList.forEach(n => {
+                        const li = `<li class="list-group-item">
+                            <a href="/News/NewsDetail/${n.newsArticleId}">${n.newsTitle}</a>
+                        </li>`;
+                        ul.append(li);
+                    });
+                },
+                error: function (err) {
+                    console.error(err);
+                    alert('Cannot load related articles');
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            loadNewsDetail();
+            loadRelatedNews();
+        });
+    </script>
+}

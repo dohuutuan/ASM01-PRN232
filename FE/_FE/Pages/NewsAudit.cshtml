@@ -1,0 +1,163 @@
+﻿@page
+@model _FE.Pages.NewsAuditModel
+@{
+    ViewData["Title"] = "News Audit";
+}
+
+<style>
+    body {
+        background-color: #f6f7fb;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .audit-container {
+        width: 1100px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        padding: 30px 40px;
+    }
+
+    .page-title {
+        font-size: 26px;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 25px;
+        border-left: 6px solid #007bff;
+        padding-left: 10px;
+    }
+
+    /* ---- Table ---- */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 15px;
+    }
+
+    thead {
+        background-color: #007bff;
+        color: white;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 12px 10px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+        background-color: #eef4ff;
+        transition: background 0.2s ease;
+    }
+
+    th {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    td {
+        color: #333;
+    }
+
+    .no-data {
+        text-align: center;
+        font-style: italic;
+        color: #888;
+        padding: 20px 0;
+    }
+
+    /* ---- Highlight columns ---- */
+    td:nth-child(1) {
+        font-weight: 600;
+        color: #0056b3;
+    }
+
+    td:nth-child(4) {
+        color: #666;
+    }
+
+    /* ---- Scroll shadow ---- */
+    .table-wrapper {
+        max-height: 520px;
+        overflow-y: auto;
+        border-radius: 10px;
+    }
+
+        .table-wrapper::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 6px;
+        }
+
+            .table-wrapper::-webkit-scrollbar-thumb:hover {
+                background: #999;
+            }
+</style>
+
+<div class="audit-container">
+    <h2 class="page-title">🕓 News Audit Logs</h2>
+
+    <div class="table-wrapper">
+        <table id="auditTable">
+            <thead>
+                <tr>
+                    <th>News ID</th>
+                    <th>Title</th>
+                    <th>Last Editor</th>
+                    <th>Modified Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="4" class="no-data">Loading...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        const token = localStorage.getItem("jwt_token");
+
+        $.ajax({
+            url: "http://localhost:5053/api/NewsAudit",
+            type: "GET",
+            headers: { "Authorization": "Bearer " + token },
+            success: function (res) {
+                const tbody = $("#auditTable tbody");
+                tbody.empty();
+
+                if (res.data && res.data.length > 0) {
+                    res.data.forEach(item => {
+                        const editor = item.lastEditorName ?? "Admin";
+                        const modified = item.modifiedDate
+                            ? new Date(item.modifiedDate).toLocaleString()
+                            : "N/A";
+
+                        tbody.append(`
+                            <tr>
+                                <td>${item.newsArticleId}</td>
+                                <td>${item.newsTitle}</td>
+                                <td>${editor}</td>
+                                <td>${modified}</td>
+                            </tr>
+                        `);
+                    });
+                } else {
+                    tbody.html("<tr><td colspan='4' class='no-data'>No data available</td></tr>");
+                }
+            },
+            error: function (xhr) {
+                alert("Error loading audit data: " + xhr.statusText);
+            }
+        });
+    });
+</script>
