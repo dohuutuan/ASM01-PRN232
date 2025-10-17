@@ -15,7 +15,7 @@ The Frontend (FE) uses **ASP.NET Core Razor Pages** or MVC, while the Backend (B
 ## 2. Configuration & Running
 
 ### Backend
-#### 1. Open the solution `_BE/DangNgocHoangAnh_SE1842-Net_A01_BE.sln` in Visual Studio 2019 or later
+#### 1. Open the solution `_BE/DoHuuTuan_SE1842-Net_A01_BE.sln` in Visual Studio 2019 or later
 
 #### 2. Configure the connection string in `appsettings.json`:
 ```json
@@ -30,7 +30,7 @@ dotnet ef dbcontext scaffold "server=TUAN\\TUAN;database=FUNewsManagement;uid=sa
 ```
 
 ### Frontend
-#### 1. Open the solution `_FE/DangNgocHoangAnh_SE1842-Net_A01_FE.sln`
+#### 1. Open the solution `_FE/DoHuuTuan_SE1842-Net_A01_FE.sln`
 
 #### 2. Open a web browser to access the application
 
